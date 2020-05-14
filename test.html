@@ -1,0 +1,109 @@
+
+<html lang="en" dir="ltr" class="inited">
+ 
+
+ <body> 
+
+<style type='text/css'>
+#formButton{
+    position: fixed;
+    bottom: 560px;
+    right: 1000px; 
+}
+
+    .message {
+display:none;
+}
+.embeddedServiceHelpButton .embeddedServiceIcon{
+display:none;
+}
+.embeddedServiceHelpButton .embeddedServiceIcon::before{
+display:none;
+}
+
+    .embeddedServiceHelpButton .helpButton .uiButton {
+    border-radius: 50px;
+            min-width: 77px;
+            height: 77px;
+            width: 77px;
+            background-image: url( 
+'https://ceva--service.my.salesforce.com/resource/1588572049000/cevaWebChatButton?');
+    }
+    .embeddedServiceHelpButton .helpButton .uiButton:focus {
+        outline: 0px solid #ED0404;
+        width: 100%;
+    }
+    .embeddedServiceHelpButton .helpButton .uiButton:hover {
+        background-color: #ED0404;
+    }
+    .embeddedServiceHelpButton .helpButton {
+    position: fixed;
+    height: 77px;
+    bottom: 0;
+}
+</style>
+
+<style type='text/css'>
+    .embeddedServiceHelpButton .helpButton .uiButton {
+        background-color: #ED0404;
+        font-family: "Arial", sans-serif;
+    }
+    .embeddedServiceHelpButton .helpButton .uiButton:focus {
+        outline: 1px solid #ED0404;
+    }
+</style>
+
+<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+<script type='text/javascript'>
+    var initESW = function(gslbBaseURL) {
+        embedded_svc.settings.displayHelpButton = true; //Or false
+        embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
+
+        //embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
+        //embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
+
+        //embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
+        //embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
+
+        // Settings for Chat
+        //embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
+            // Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
+            // Returns a valid button ID.
+        //};
+        //embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
+        //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
+        //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
+
+        embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+        embedded_svc.settings.entryFeature = 'LiveAgent';
+
+        embedded_svc.init(
+            'https://ceva--service.my.salesforce.com',
+            'https://service-cevalogistics.cs88.force.com',
+            gslbBaseURL,
+            '00D9E0000009GI9',
+            'Ceva_Chat_Group',
+            {
+                baseLiveAgentContentURL: 'https://c.la2-c1cs-fra.salesforceliveagent.com/content',
+                deploymentId: '5729E000000CbGK',
+                buttonId: '5739E0000008PSe',
+                baseLiveAgentURL: 'https://d.la2-c1cs-fra.salesforceliveagent.com/chat',
+                eswLiveAgentDevName: 'Ceva_Chat_Group',
+                isOfflineSupportEnabled: true
+            }
+        );
+    };
+
+    if (!window.embedded_svc) {
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://ceva--service.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+        s.onload = function() {
+            initESW(null);
+        };
+        document.body.appendChild(s);
+    } else {
+        initESW('https://service.force.com');
+    }
+</script>
+</body>
+</html>
