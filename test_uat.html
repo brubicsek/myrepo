@@ -6,42 +6,13 @@ test 1
  <body> 
  test 3
 <style type='text/css'>
-#formButton{
-    position: fixed;
-    bottom: 560px;
-    right: 1000px; 
-}
-
-    .message {
-display:none;
-}
-.embeddedServiceHelpButton .embeddedServiceIcon{
-display:none;
-}
-.embeddedServiceHelpButton .embeddedServiceIcon::before{
-display:none;
-}
-
     .embeddedServiceHelpButton .helpButton .uiButton {
-    border-radius: 50px;
-            min-width: 77px;
-            height: 77px;
-            width: 77px;
-            background-image: url( 
-'https://ceva--service.my.salesforce.com/resource/1588572049000/cevaWebChatButton?');
+        background-color: #ED0404;
+        font-family: "Arial", sans-serif;
     }
     .embeddedServiceHelpButton .helpButton .uiButton:focus {
-        outline: 0px solid #ED0404;
-        width: 100%;
+        outline: 1px solid #ED0404;
     }
-    .embeddedServiceHelpButton .helpButton .uiButton:hover {
-        background-color: #ED0404;
-    }
-    .embeddedServiceHelpButton .helpButton {
-    position: fixed;
-    height: 77px;
-    bottom: 0;
-}
 </style>
 
 <style type='text/css'>
@@ -60,20 +31,6 @@ display:none;
         embedded_svc.settings.displayHelpButton = true; //Or false
         embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
 
-        //embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
-        //embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
-
-        //embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
-        //embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
-
-        // Settings for Chat
-        //embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
-            // Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
-            // Returns a valid button ID.
-        //};
-        //embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
-        //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
-        //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
 
         embedded_svc.settings.enabledFeatures = ['LiveAgent'];
         embedded_svc.settings.entryFeature = 'LiveAgent';
