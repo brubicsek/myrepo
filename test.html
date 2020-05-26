@@ -7,17 +7,31 @@
 test
 
 <style type='text/css'>
-    .embeddedServiceHelpButton .helpButton .uiButton {
+    .xxxembeddedServiceHelpButton .helpButton .uiButton {
         background-color: #ED0404;
         font-family: "Arial", sans-serif;
     }
-    .embeddedServiceHelpButton .helpButton .uiButton:focus {
+    .xxxembeddedServiceHelpButton .helpButton .uiButton:focus {
         outline: 1px solid #ED0404;
     }
 </style>
 
 <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
 <script type='text/javascript'>
+   var style = document.createElement('style');
+     style.innerHTML = '
+     .embeddedServiceHelpButton .helpButton .uiButton {
+        background-color: #ED0404;
+        font-family: "Arial", sans-serif;
+     }
+      .embeddedServiceHelpButton .helpButton .uiButton:focus {
+        outline: 1px solid #ED0404;
+     }
+   ';
+     document.head.appendChild(style);
+ 
+ 
+ 
     var initESW = function(gslbBaseURL) {
         embedded_svc.settings.displayHelpButton = true; //Or false
         embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
