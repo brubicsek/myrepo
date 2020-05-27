@@ -25,7 +25,8 @@ test
     style.innerHTML +=  `.embeddedServiceHelpButton .helpButton .uiButton:focus {
         outline: 1px solid #ED0404;
     }`;
-    var x = document.getElementsByClassName("embeddedServiceHelpButton");    
+    document.body.appendChild(style); 
+    console.log('style added');
     var initESW = function(gslbBaseURL) {
         embedded_svc.settings.displayHelpButton = true; //Or false
         embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
@@ -72,13 +73,12 @@ test
         s.setAttribute('src', 'https://service.force.com/embeddedservice/5.0/esw.min.js');
         s.onload = function() {
             initESW(null);
-            document.body.appendChild(style);
+            
 
         };
         document.body.appendChild(s);
     } else {
         initESW('https://service.force.com');
-        document.body.appendChild(style);
     }
 </script>
 </body>
