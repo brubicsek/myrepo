@@ -25,6 +25,8 @@ test
     style.innerHTML +=  `.embeddedServiceHelpButton .helpButton .uiButton:focus {
         outline: 1px solid #ED0404;
     }`;
+    var x = document.getElementsByClassName("embeddedServiceHelpButton");
+    console.log('0 ' + x );
     
     var initESW = function(gslbBaseURL) {
         embedded_svc.settings.displayHelpButton = true; //Or false
