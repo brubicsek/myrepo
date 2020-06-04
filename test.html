@@ -1,31 +1,59 @@
 
 <html lang="en" dir="ltr" class="inited">
+ <body onload="onBodyLoaded()">
+test 1
+
+</body>
+
+
+<script type='text/javascript'>
+function onBodyLoaded() {
+ console.log('body loaded');
  
+    
+    buildStyle(); 
 
- <body> 
+ setTimeout(function(){
+          var x = document.getElementsByClassName("message");  
+          var pngUrl = 'https://service-cview.cs88.force.com/service/resource/1591275544000/chatIcon2?';
+          if(x.length == 1){
+              var msg = x[0].innerHTML;
+              if(msg != null && msg == 'Contact Us' ){
+                 pngUrl = 'https://service-cview.cs88.force.com/service/resource/1591310016000/formIcon?';
+              }
+          } 
+          console.log('' + x);
+          buildStyle(pngUrl );
+    }, 1000);
 
-test
-<!--
-<style type='text/css'>
-    .embeddedServiceHelpButton .helpButton .uiButton {
-        background-color: #ED0404;
-        font-family: "Arial", sans-serif;
+}
+
+    function buildStyle(urlpicture){
+        var style = document.createElement('style');
+        style.innerHTML = '';
+        style.innerHTML = ` .message { display:none;}`;
+        style.innerHTML += ` .embeddedServiceHelpButton .embeddedServiceIcon{display:none;} `;
+        style.innerHTML += ` .embeddedServiceHelpButton .embeddedServiceIcon::before{display:none;} `;
+        style.innerHTML += ` .embeddedServiceHelpButton .helpButton .uiButton { `;
+        style.innerHTML += ` border-radius: 50px; min-width: 70px;  height: 70px;  width: 70px; `;
+        style.innerHTML += ` background: #ffffff  url(` + urlpicture + `) no-repeat center/contain;background-size: auto;  `   
+        style.innerHTML += ` } `;
+    
+        style.innerHTML += `.embeddedServiceHelpButton .helpButton .uiButton:focus {outline: 0px solid #ED0404;width: 100%;}`;
+    
+    
+        style.innerHTML += `.embeddedServiceHelpButton .helpButton .uiButton:hover {background-color: #ED0404;} `; 
+        style.innerHTML += `.embeddedServiceHelpButton .helpButton { position: fixed;height: 77px;bottom: 0;} `; 
+    
+      
+
+        style.innerHTML += `.embeddedServiceHelpButton .helpButton .uiButton { background-color: #ED0404;   font-family: "Arial", sans-serif; }`;
+        style.innerHTML +=  `.embeddedServiceHelpButton .helpButton .uiButton:focus {  outline: 1px solid #ED0404; }`;
+        document.body.appendChild(style);     
     }
-    .embeddedServiceHelpButton .helpButton .uiButton:focus {
-        outline: 1px solid #ED0404;
-    }
-</style> -->
-
+</script>
 <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
 <script type='text/javascript'>
-   var style = document.createElement('style');
-
-    style.innerHTML = `.embeddedServiceHelpButton .helpButton .uiButton { background-color: #ED0404;   font-family: "Arial", sans-serif; }`;
-    style.innerHTML +=  `.embeddedServiceHelpButton .helpButton .uiButton:focus {
-        outline: 1px solid #ED0404;
-    }`;
-    document.body.appendChild(style); 
-
     var initESW = function(gslbBaseURL) {
         embedded_svc.settings.displayHelpButton = true; //Or false
         embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
@@ -45,11 +73,11 @@ test
         //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
         //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
 
-        //https://service-cview.cs88.force.com/service
-        //https://service-cevalogistics.cs88.force.com
         embedded_svc.settings.enabledFeatures = ['LiveAgent'];
         embedded_svc.settings.entryFeature = 'LiveAgent';
-
+        embedded_svc.addEventHandler("onload", function(data) {   
+            console.log("onload" );
+        });
         embedded_svc.init(
             'https://ceva--service.my.salesforce.com',
             'https://service-cevalogistics.cs88.force.com',
@@ -69,15 +97,16 @@ test
 
     if (!window.embedded_svc) {
         var s = document.createElement('script');
-        s.setAttribute('src', 'https://service.force.com/embeddedservice/5.0/esw.min.js');
+        s.setAttribute('src', 'https://ceva--service.my.salesforce.com/embeddedservice/5.0/esw.min.js');
         s.onload = function() {
             initESW(null);
-           
         };
         document.body.appendChild(s);
     } else {
         initESW('https://service.force.com');
     }
 </script>
-</body>
+
+
+
 </html>
