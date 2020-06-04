@@ -1,18 +1,9 @@
 
 <html lang="en" dir="ltr" class="inited">
- <body onload="onBodyLoaded()">
-test 1
-
-</body>
-
-
-<script type='text/javascript'>
+ <script type='text/javascript'>
 function onBodyLoaded() {
  console.log('body loaded');
- 
-    
-    buildStyle(); 
-
+ buildStyle(); 
  setTimeout(function(){
           var x = document.getElementsByClassName("message");  
           var pngUrl = 'https://service-cview.cs88.force.com/service/resource/1591275544000/chatIcon2?';
@@ -25,7 +16,6 @@ function onBodyLoaded() {
           console.log('' + x);
           buildStyle(pngUrl );
     }, 1000);
-
 }
 
     function buildStyle(urlpicture){
@@ -52,6 +42,14 @@ function onBodyLoaded() {
         document.body.appendChild(style);     
     }
 </script>
+ 
+ <body onload="onBodyLoaded()">
+test 1
+
+</body>
+
+
+
 <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
 <script type='text/javascript'>
     var initESW = function(gslbBaseURL) {
