@@ -55,7 +55,22 @@ var onLoadFunction = function() {
         //embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
         //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
         //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
-
+	embedded_svc.addEventHandler("onHelpButtonClick", function(data) { 
+		setTimeout(function(){ document.getElementById('Phone__c').onchange = function() {
+		var phoneInput = document.getElementById("Phone__c");
+		var submitButton = document.getElementsByClassName('submitButton')[0];
+		if(isPhoneNumberOk(phoneInput)){
+			if(document.getElementById("phoneInputErrorArea") === null)
+				displayPhoneError(phoneInput);
+			submitButton.disabled = true;
+		}else{
+			hidePhoneError();
+			submitButton.disabled = false;
+		}
+		
+		} }, 5000);
+	}); 	
+	    
         embedded_svc.settings.enabledFeatures = ['LiveAgent'];
         embedded_svc.settings.entryFeature = 'LiveAgent';
         embedded_svc.init(
@@ -108,21 +123,7 @@ launchLoad();
  
 </script>
  <script type='text/javascript'>
-embedded_svc.addEventHandler("onHelpButtonClick", function(data) { 
-	setTimeout(function(){ document.getElementById('Phone__c').onchange = function() {
-		var phoneInput = document.getElementById("Phone__c");
-		var submitButton = document.getElementsByClassName('submitButton')[0];
-		if(isPhoneNumberOk(phoneInput)){
-			if(document.getElementById("phoneInputErrorArea") === null)
-				displayPhoneError(phoneInput);
-			submitButton.disabled = true;
-		}else{
-			hidePhoneError();
-			submitButton.disabled = false;
-		}
-		
-	} }, 5000);
-}); 
+
 
 
 
