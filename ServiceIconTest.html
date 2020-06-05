@@ -107,6 +107,44 @@ launchLoad();
  
  
 </script>
+ <script type='text/javascript'>
+embedded_svc.addEventHandler("onHelpButtonClick", function(data) { 
+	setTimeout(function(){ document.getElementById('Phone__c').onchange = function() {
+		var phoneInput = document.getElementById("Phone__c");
+		var submitButton = document.getElementsByClassName('submitButton')[0];
+		if(isPhoneNumberOk(phoneInput)){
+			if(document.getElementById("phoneInputErrorArea") === null)
+				displayPhoneError(phoneInput);
+			submitButton.disabled = true;
+		}else{
+			hidePhoneError();
+			submitButton.disabled = false;
+		}
+		
+	} }, 5000);
+}); 
 
 
+
+function displayPhoneError(phoneInput){
+	var errorTag = '<ul class="has-error uiInputDefaultError uiInput uiInputText uiInput--default uiInput--input" id="phoneInputErrorArea"   data-aura-class="uiInputDefaultError uiInput uiInputText uiInput--default uiInput--input">';
+	errorTag += '<li class="form-element__help" >';
+	errorTag += 'Please enter a valid phone number.';
+	errorTag += '</li></ul>';
+	var parentDiv = phoneInput.parentElement;
+	parentDiv.insertAdjacentHTML('afterend', errorTag);
+}
+function hidePhoneError(){
+	if(document.getElementById("phoneInputErrorArea") !== null)
+		document.getElementById("phoneInputErrorArea").remove();
+}
+function isPhoneNumberOk(inputPhone){
+	var phoneRE = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
+	if(inputPhone.value.match(phoneRE)){
+	   return false;   
+	}else{
+		return true;
+	}
+}
+</script>
 </html>
