@@ -1,9 +1,9 @@
 <html lang="en" dir="ltr" class="inited">
  test 2
 <script type='text/javascript'>
-document.onload = function() {
+var onLoadFunction = function() {
 //function onBodyLoaded() {
-   console.log('body loaded');
+   console.log('init callback');
  
     
     buildStyle(); 
@@ -73,6 +73,7 @@ document.onload = function() {
         embedded_svc.addEventHandler("onload", function(data) {   
             console.log("onload" );
         });
+         console.log("before init" );
         embedded_svc.init(
             'https://ceva--service.my.salesforce.com',
             'https://service-cevalogistics.cs88.force.com',
@@ -89,17 +90,45 @@ document.onload = function() {
             }
         );
     };
-
-    if (!window.embedded_svc) {
-        var s = document.createElement('script');
-        s.setAttribute('src', 'https://ceva--service.my.salesforce.com/embeddedservice/5.0/esw.min.js');
-        s.onload = function() {
+    
+    var  launchInit = new Promise(
+    function (resolve, reject) {
+ 
+ 
+     if (!window.embedded_svc) {
+         var s = document.createElement('script');
+         s.setAttribute('src', 'https://ceva--service.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+         s.onload = function() {
             initESW(null);
         };
         document.body.appendChild(s);
-    } else {
-        initESW('https://service.force.com');
+     } else {
+         initESW('https://service.force.com');
+     }
+     resolve('res'); // fulfilled
+     reject(error);
+
     }
+);
+ 
+var chain = function () {
+    launchInit
+        .then(function (fulfilled) {
+            onLoadFunction();
+        })
+ 				.then(function (fulfilled) {
+            console.log('fulfilled' );
+        })        
+        .catch(function (error) {
+            // oops, mom don' buy it
+            console.log(error.message);
+        });
+};
+
+chain();
+
+ 
+ 
 </script>
 
 
