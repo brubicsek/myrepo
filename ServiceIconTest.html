@@ -2,13 +2,8 @@
  test 2
 <script type='text/javascript'>
 var onLoadFunction = function() {
-//function onBodyLoaded() {
-   console.log('init callback');
- 
-    
     buildStyle(); 
-
- setTimeout(function(){
+    setTimeout(function(){
           var x = document.getElementsByClassName("message");  
           var pngUrl = 'https://service-cview.cs88.force.com/service/resource/1591275544000/chatIcon2?';
           if(x.length == 1){
@@ -23,7 +18,7 @@ var onLoadFunction = function() {
 
 }
 
-    function buildStyle(urlpicture){
+   function buildStyle(urlpicture){
         var style = document.createElement('style');
         style.innerHTML = '';
         style.innerHTML = ` .message { display:none;}`;
@@ -70,10 +65,6 @@ var onLoadFunction = function() {
 
         embedded_svc.settings.enabledFeatures = ['LiveAgent'];
         embedded_svc.settings.entryFeature = 'LiveAgent';
-        embedded_svc.addEventHandler("onload", function(data) {   
-            console.log("onload" );
-        });
-         console.log("before init" );
         embedded_svc.init(
             'https://ceva--service.my.salesforce.com',
             'https://service-cevalogistics.cs88.force.com',
@@ -93,8 +84,6 @@ var onLoadFunction = function() {
     
     var  launchInit = new Promise(
     function (resolve, reject) {
- 
- 
      if (!window.embedded_svc) {
          var s = document.createElement('script');
          s.setAttribute('src', 'https://ceva--service.my.salesforce.com/embeddedservice/5.0/esw.min.js');
@@ -105,7 +94,7 @@ var onLoadFunction = function() {
      } else {
          initESW('https://service.force.com');
      }
-     resolve('res'); // fulfilled
+     resolve('success'); 
      reject(error);
 
     }
@@ -115,12 +104,8 @@ var chain = function () {
     launchInit
         .then(function (fulfilled) {
             onLoadFunction();
-        })
- 				.then(function (fulfilled) {
-            console.log('fulfilled' );
-        })        
+        })       
         .catch(function (error) {
-            // oops, mom don' buy it
             console.log(error.message);
         });
 };
