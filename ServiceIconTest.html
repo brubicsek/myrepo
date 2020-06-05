@@ -28,15 +28,9 @@ var onLoadFunction = function() {
         style.innerHTML += ` border-radius: 50px; min-width: 70px;  height: 70px;  width: 70px; `;
         style.innerHTML += ` background: #ffffff  url(` + urlpicture + `) no-repeat center/contain;background-size: auto;  `   
         style.innerHTML += ` } `;
-    
         style.innerHTML += `.embeddedServiceHelpButton .helpButton .uiButton:focus {outline: 0px solid #ED0404;width: 100%;}`;
-    
-    
         style.innerHTML += `.embeddedServiceHelpButton .helpButton .uiButton:hover {background-color: #ED0404;} `; 
         style.innerHTML += `.embeddedServiceHelpButton .helpButton { position: fixed;height: 77px;bottom: 0;} `; 
-    
-      
-
         style.innerHTML += `.embeddedServiceHelpButton .helpButton .uiButton { background-color: #ED0404;   font-family: "Arial", sans-serif; }`;
         style.innerHTML +=  `.embeddedServiceHelpButton .helpButton .uiButton:focus {  outline: 1px solid #ED0404; }`;
         document.body.appendChild(style);     
@@ -100,7 +94,7 @@ var onLoadFunction = function() {
     }
 );
  
-var chain = function () {
+var launchLoad = function () {
     launchInit
         .then(function (fulfilled) {
             onLoadFunction();
@@ -109,8 +103,7 @@ var chain = function () {
             console.log(error.message);
         });
 };
-
-chain();
+launchLoad();
 
  
  
