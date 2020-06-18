@@ -74,6 +74,8 @@
     
     var resourceData;
     function launchJSONLoadPR (url) {
+          resolve();
+         
           return new Promise(function(resolve, reject) {
           
           var xhr = new XMLHttpRequest();
